@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npx prisma generate",
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,6 +12,7 @@
     "@kinde-oss/kinde-auth-nextjs": "^2.1.15",
     "@prisma/client": "^5.10.2",
     "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@tailwindcss/typography": "^0.5.10",
     "@tanstack/react-query": "^5.24.1",
@@ -19,6 +20,7 @@
     "@trpc/next": "^11.0.0-next-beta.303",
     "@trpc/react-query": "^11.0.0-next-beta.303",
     "@trpc/server": "^11.0.0-next-beta.303",
+    "@uploadthing/react": "^6.3.2",
     "class-variance-authority": "^0.7.0",
     "date-fns": "^3.3.1",
     "lucide-react": "^0.343.0",
@@ -26,9 +28,11 @@
     "pnpm": "^8.15.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-dropzone": "^14.2.3",
     "react-loading-skeleton": "^3.4.0",
     "shadcn-ui": "^0.8.0",
     "tailwindcss-animate": "^1.0.7",
+    "uploadthing": "^6.5.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

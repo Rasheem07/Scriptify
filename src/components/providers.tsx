@@ -1,7 +1,7 @@
 'use client'
 
 import { trpc } from '@/app/_trpc/trpcClient'
-import { absoluteUrl } from '@/app/lib/utils'
+import { absoluteUrl } from '@/lib/utils'
 import {
   QueryClient,
   QueryClientProvider,
