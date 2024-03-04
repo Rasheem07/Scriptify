@@ -3,36 +3,25 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { trpc } from "../_trpc/trpcClient";
 import { Loader2 } from "lucide-react";
-import { useEffect } from "react";
+import { Suspense } from "react";
 
-const Page = () => {
+const AuthCallback = () => {
   const router = useRouter();
+
   const searchParams = useSearchParams();
   const origin = searchParams.get("origin");
   
-  const fetchData = async () => {
-    try {
-      const { data } = await trpc.authCallback.useQuery();
-      
-      if (data?.success) {
-        router.push(origin ? `/${origin}` : '/dashboard');
-      } else {
-        // Handle unexpected response
-        console.error("Unexpected response from server:", data);
-        router.push('/sign-in');
-      }
+  try {
+    const {data} = trpc.authCallback.useQuery();
+    
+    if(data?.success){
+      router.push(origin ? `/${origin}` : '/dashboard');
+    }
     } catch (error) {
-      // Handle network error or any other unexpected error
-      console.error("Error fetching data:", error);
-      if ((error as any).data?.code === "UNAUTHORIZED") {
+      if((error as any).data?.code === "UNAUTHORIZED"){
         router.push('/sign-in');
       }
     }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []); // Fetch data once on component mount
 
   return (
     <div className="w-full mt-24 flex justify-center">
@@ -45,4 +34,10 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default function Page() {
+  return(
+    <Suspense>
+      <AuthCallback />
+    </Suspense>
+  )
+};
