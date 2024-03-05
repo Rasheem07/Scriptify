@@ -3,8 +3,16 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-export default function Home() {
+export default async function Home() {
+
+  const {getUser} = getKindeServerSession();
+  const user = await getUser();
+  if(user){
+    redirect('/dashboard');
+  }
   return (
     <>
       <MaxWidthWrapper className="mb-12 mt-28 sm:mt-40 flex flex-col justify-center items-center text-center">

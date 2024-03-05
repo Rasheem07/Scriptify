@@ -12,7 +12,7 @@ export default function Navbar() {
           <Link href="/" className="flex z-40 font-semibold capitalize">
             Scriptify
           </Link>
-          <div className="hidden sm:flex items-center space-x-4">
+          <div className="flex items-center space-x-4">
             <Link
               href="/pricing"
               className={buttonVariants({
