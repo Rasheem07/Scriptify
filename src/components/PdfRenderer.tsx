@@ -61,7 +61,7 @@ export default function PdfRenderer({ url }: { url: string }) {
   };
 
   return (
-    <div className="flex flex-col w-full mx-auto items-center bg-white rounded-md shadow">
+    <div className="flex flex-col w-full mx-auto items-center bg-white rounded-md shadow min-h-[calc(100vh-10rem)]">
       <div className="flex justify-between items-center w-full border-b border-zinc-200 px-2 h-14">
         <div className="flex items-center gap-1.5">
           <Button
@@ -110,7 +110,7 @@ export default function PdfRenderer({ url }: { url: string }) {
           </Button>
         </div>
 
-        <div className="space-x-2">
+        <div className="sm:space-x-2 space-x-1">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" aria-label="zoom" className="gap-1.5">
