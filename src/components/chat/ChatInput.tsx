@@ -13,7 +13,7 @@ export default function ChatInput({isDisabled}: {isDisabled?: boolean}) {
 
   return (
     <div className="absolute bottom-0 left-0 right-0">
-      <div className="mx-2 flex gap-3 flex-col md:mx-4 md:mb-6 lg:mx-auto lg:max-w-2xl xl:max-w-3xl">
+      <div className="mx-2 flex gap-3 flex-col md:mx-4 md:mb-4 lg:mx-auto lg:max-w-2xl xl:max-w-3xl">
         <div className="flex md:flex-col items-stretch h-full flex-1 relative">
           <div className="flex flex-col p-4 w-full relative flex-grow">
             <div className="relative">
