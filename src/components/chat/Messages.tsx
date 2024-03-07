@@ -45,6 +45,7 @@ export default function Messages({fileId}: {fileId: string}) {
         if (i === combinedMessages.length - 1) {
           return (
             <Message
+            key={message.id}
             isNextMessageSamePerson={isNextMessageSamePerson}
             message={message}
             />
@@ -52,6 +53,7 @@ export default function Messages({fileId}: {fileId: string}) {
         } else
           return (
             <Message
+            key={message.id}
             isNextMessageSamePerson={isNextMessageSamePerson}
             message={message}
             />
