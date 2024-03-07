@@ -49,7 +49,8 @@ export const appRouter = router({
       return file;
     }),
 
-    getFileUploadStatus: privateProcedure
+  
+  getFileUploadStatus: privateProcedure
     .input(z.object({ fileId: z.string() }))
     .query(async ({ input, ctx }) => {
       const file = await db.file.findFirst({
@@ -57,11 +58,11 @@ export const appRouter = router({
           id: input.fileId,
           userId: ctx.userId,
         },
-      })
+      });
 
-      if (!file) return { status: 'PENDING' as const }
+      if (!file) return { status: "PENDING" as const };
 
-      return { status: file.uploadStatus }
+      return { status: file.uploadStatus };
     }),
 
   getUserFiles: privateProcedure.query(async ({ ctx }) => {
@@ -73,7 +74,7 @@ export const appRouter = router({
       },
     });
   }),
-  
+
   deleteFile: privateProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -97,6 +98,55 @@ export const appRouter = router({
 
       return file;
     }),
+
+  getFileMessages: privateProcedure
+  .input(z.object({
+    limit: z.number().min(0).max(100).nullish(),
+    cursor: z.string().nullish(),
+    fileId: z.string()
+  }))
+  .query(async ({ctx, input}) => {
+    const { userId } = ctx
+      const { fileId, cursor } = input
+      const limit = input.limit ?? 10;
+
+      const file = await db.file.findFirst({
+        where: {
+          id: fileId,
+          userId,
+        },
+      })
+
+      if (!file) throw new TRPCError({ code: 'NOT_FOUND' })
+
+      const messages = await db.message.findMany({
+        take: limit + 1,
+        where: {
+          fileId,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+        cursor: cursor ? {id: cursor} : undefined,
+        select: {
+          id: true,
+          isUserMessage: true,
+          createdAt: true,
+          message: true,
+        },
+      })
+
+      let nextCursor: typeof cursor | undefined = undefined;
+      if (messages.length > limit) {
+        const nextItem = messages.pop()
+        nextCursor = nextItem?.id
+      }
+
+      return {
+        messages,
+        nextCursor,
+      }
+  })
 });
 
 export type AppRouter = typeof appRouter;

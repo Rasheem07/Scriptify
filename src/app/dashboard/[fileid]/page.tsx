@@ -30,7 +30,7 @@ export default async function Page({params}: ParamsProps) {
     if(!file) notFound();
 
   return (
-    <div className='flex flex-col justify-between flex-1 h-[calc(100vh-56px)]'>
+    <div className='flex flex-col justify-between flex-1 h-[calc(100vh-56px)] md:overflow-y-hidden'>
       <div className="mx-auto w-full lg:flex max-w-8xl grow xl:px-2">
         <div className="flex-1 xl:flex">
             <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:pl-6 xl:flex-1">
