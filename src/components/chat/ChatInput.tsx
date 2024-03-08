@@ -41,6 +41,7 @@ export default function ChatInput({isDisabled}: {isDisabled?: boolean}) {
                 addMessage();
 
                 buttonRef.current?.focus();
+
               }}>
                 <Send className="h-4 w-4" />
               </Button>
