@@ -6,7 +6,8 @@ import Navbar from "@/components/navbar";
 import Provider from "@/components/providers";
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Toaster } from "@/components/ui/toaster";
-import 'simplebar-react/dist/simplebar.min.css'
+import 'simplebar-react/dist/simplebar.min.css';
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {

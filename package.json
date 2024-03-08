@@ -28,6 +28,7 @@
     "@trpc/react-query": "^11.0.0-next-beta.303",
     "@trpc/server": "^11.0.0-next-beta.303",
     "@uploadthing/react": "^6.3.2",
+    "@vercel/analytics": "^1.2.2",
     "ai": "^3.0.5",
     "class-variance-authority": "^0.7.0",
     "date-fns": "^3.3.1",
